@@ -1,0 +1,13 @@
+﻿
+[nugets used]   
+
+Install-Package Microsoft.EntityFrameworkCore.Tools -Version 5.0.3
+Install-Package Microsoft.EntityFrameworkCore -Version 5.0.3
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 5.0.3
+Install-Package Microsoft.EntityFrameworkCore.Design -Version 5.0.3
+
+[reference material]
+https://entityframeworkcore.com/approach-code-first
+
+[tweaks]
+i connected to sql server via /Server Explorer / Data Connection / Add Connection

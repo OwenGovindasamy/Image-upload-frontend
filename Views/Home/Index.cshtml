@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Net Core 5.0.3 Test App</h1>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data" action="https://localhost:44386/api/photos">
+            <input type="file" id="File" name="File">
+            <input type="text" id="Description" name="Description">
+            <input type="submit">
+        </form>
+    </div>
+</div>
