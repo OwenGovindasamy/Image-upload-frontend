@@ -3,12 +3,55 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Net Core 5.0.3 Test App</h1>
+    <h1 style="color:white!important;">Net Core 5.0.3 Test App</h1>
     <div class="container">
-        <form method="post" enctype="multipart/form-data" action="https://localhost:44386/api/photos">
-            <input type="file" id="File" name="File">
-            <input type="text" id="Description" name="Description">
-            <input type="submit">
+        <form id="form">
+            <div>
+                <div class="col-6">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="Description" name="Description"placeholder="Enter Description">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="file" id="File" name="File">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </div>
+                </div>
+            </div>
         </form>
+        <a id="uri" href="" target="_blank" style="display:none; background-color:forestgreen;color:aliceblue">view your photo!</a>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function (e) {
+        $("#form").on('submit', (function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "https://localhost:44386/api/photos",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $("#err").fadeOut();
+                },
+                success: function (data) {
+                    $("#uri").attr("href", data.url);
+                    $("#uri").fadeIn();
+                },
+                error: function (e) {
+                    alert("failed");
+                    console.log(data);
+                }
+            });
+        }));
+    });
+</script>

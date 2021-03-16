@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Recap_App.Interfaces;
+using Recap_App.Logic;
 using Recap_App.Models;
 using System;
 using System.Collections.Generic;
@@ -9,26 +11,29 @@ using System.Threading.Tasks;
 
 namespace Recap_App.Controllers
 {
+    //TODO: MAP DATA FROM photosAsync()
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+        private readonly IBusinessLogic _businessLogic;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IBusinessLogic businessLogic)
         {
             _logger = logger;
             _context = context;
+            _businessLogic = businessLogic;
         }
 
         public IActionResult Index()
         {
-            var a = _context.ErrorViewModel.ToList();
-
+            var a = _businessLogic.photosAsync();
             return View();
         }
 
         public IActionResult Privacy()
         {
+
             return View();
         }
 
