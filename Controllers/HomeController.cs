@@ -25,10 +25,10 @@ namespace Recap_App.Controllers
             _businessLogic = businessLogic;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var a = _businessLogic.photosAsync();
-            return View();
+            var payload = await _businessLogic.photosAsync();
+            return View(payload);
         }
 
         public IActionResult Privacy()

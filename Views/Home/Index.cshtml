@@ -1,7 +1,25 @@
-﻿@{
+﻿@model List<Photo>
+@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        font-size: smaller;
+    }
+
+    tr {
+        background-color: rgba(252, 252, 252, 0.45);
+    }
+</style>
 <div class="text-center">
     <h1 style="color:white!important;">Net Core 5.0.3 Test App</h1>
     <div class="container">
@@ -10,12 +28,12 @@
                 <div class="col-6">
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="Description" name="Description"placeholder="Enter Description">
+                            <input type="text" class="form-control" id="Description" name="Description" placeholder="Enter Description">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <input type="file" id="File" name="File">
+                            <input class="btn btn-primary btn-block" type="file" id="File" name="File">
                         </div>
                     </div>
                     <div class="col-12">
@@ -24,13 +42,53 @@
                 </div>
             </div>
         </form>
-        <a id="uri" href="" target="_blank" style="display:none; background-color:forestgreen;color:aliceblue">view your photo!</a>
     </div>
+</div>
+<br />
+<div class="container">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Url</th>
+            <th>Description</th>
+            <th>Del</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td><a href="@item.Url" target="_blank" style="color:black;">@item.Url</a></td>
+                <td>@item.Description</td>
+                <td><button id="Delbtn" data-value="@item.Id">Delete</button></td>
+            </tr>
+        }
+    </table>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
+    // JS is onpage to follow logic easier.
     $(document).ready(function (e) {
+        $('#Delbtn').on('click', function (e)
+        {
+            var id = $(this).data("value");
+
+            $.ajax({
+                url: "https://localhost:44386/api/photos/" + id,
+                type: "DELETE",
+                data: { },
+                success: function () {
+                    alert("Deleted");
+                    location.reload();
+                    return false;
+                },
+                error: function (e) {
+                    alert("failed");
+                }
+            });
+        }); 
+
         $("#form").on('submit', (function (e) {
             e.preventDefault();
             $.ajax({
@@ -44,8 +102,8 @@
                     $("#err").fadeOut();
                 },
                 success: function (data) {
-                    $("#uri").attr("href", data.url);
-                    $("#uri").fadeIn();
+                    location.reload();
+                    return false;
                 },
                 error: function (e) {
                     alert("failed");

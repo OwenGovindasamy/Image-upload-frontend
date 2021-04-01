@@ -11,7 +11,7 @@ namespace Recap_App.Logic
 {
     public class BusinessLogic : IBusinessLogic
     {
-        public async Task<Photo> photosAsync()
+        public async Task<List<Photo>> photosAsync()
         {
             string apiUrl = "https://localhost:44386/api/photos";
 
@@ -26,7 +26,7 @@ namespace Recap_App.Logic
                 {
                     var result = await response.Content.ReadAsStringAsync();
 
-                    return JsonConvert.DeserializeObject<Photo>(result);
+                    return JsonConvert.DeserializeObject<List<Photo>>(result);
 
                 }
 
