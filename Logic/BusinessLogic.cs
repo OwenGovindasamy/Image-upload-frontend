@@ -26,10 +26,9 @@ namespace Recap_App.Logic
                 {
                     var result = await response.Content.ReadAsStringAsync();
 
-                    return JsonConvert.DeserializeObject<List<Photo>>(result);
+                    return JsonConvert.DeserializeObject<List<Photo>>(result); //map JSON payload to List<Photo> 
 
                 }
-
             }
             throw new Exception("Photo List not found");
         }
