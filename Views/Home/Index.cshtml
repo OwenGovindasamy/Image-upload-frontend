@@ -2,43 +2,25 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
+<link href="~/css/Custom.css" rel="stylesheet" />
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        font-size: smaller;
-    }
-
-    tr {
-        background-color: rgba(252, 252, 252, 0.45);
-    }
-</style>
 <div class="text-center">
     <h1 style="color:white!important;">Net Core 5.0.3 Test App</h1>
     <div class="container">
         <form id="form">
-            <div>
-                <div class="col-6">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="Description" name="Description" placeholder="Enter Description">
-                        </div>
+            <div class="col-6">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Description" name="Description" placeholder="Enter Description">
                     </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <input class="btn btn-primary btn-block" type="file" id="File" name="File">
-                        </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <input class="btn btn-primary btn-block" type="file" id="File" name="File">
                     </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
             </div>
         </form>
